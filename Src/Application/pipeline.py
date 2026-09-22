@@ -10,13 +10,15 @@ async def pipeline(
 
     application.offer_repo.save(path=offer_path, data=job_offer.model_dump())
 
-    application.analyzer.analyze(job_offer)
+    application.analyzer.analyze(job_offer=job_offer)
 
     application.offer_repo.save(path=offer_path, data=job_offer.model_dump())
 
-    await application.retriever.retrieve_experience(offer_path=offer_path)
+    await application.retriever.retrieve_experience(job_offer=job_offer)
 
-    application.reranker.rerank_experiences(offer_path=offer_path)
+    application.offer_repo.save(path=offer_path, data=job_offer.model_dump())
+
+    application.reranker.rerank_experiences(job_offer=job_offer)
 
     should_write, top_experiences_names = application.writing_decider.do_write(offer_path=offer_path)
 

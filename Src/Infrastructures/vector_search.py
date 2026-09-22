@@ -2,8 +2,8 @@ from qdrant_client import AsyncQdrantClient
 from langchain_huggingface import HuggingFaceEmbeddings
 from torch import cuda
 from qdrant_client.models import QueryRequest
-from typing import Any
 from Schemas.search_query import SearchQuery
+from Schemas.retrieval import RetrievedExperience
 import logging
 from Infrastructures.retrieval_post_processing import RetrievalPostProcessing
 from config.settings import Settings
@@ -57,7 +57,7 @@ class VectorSearch():
             queries_list: list[SearchQuery], 
             filter: Filter | None = None, 
             top_k_per_filter: int |None = None
-    ) -> list[dict[str, Any]]:
+    ) -> list[RetrievedExperience]:
 
         top_k = (
             top_k_per_filter

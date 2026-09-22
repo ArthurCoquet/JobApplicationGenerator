@@ -1,5 +1,6 @@
 from qdrant_client.http.models.models import QueryResponse
 from Schemas.search_query import SearchQuery
+from Schemas.retrieval import RetrievedExperience, RetrievedChunk
 from typing import Any
 import json
 
@@ -64,8 +65,8 @@ class RetrievalPostProcessing:
 
     def group_by_experience_and_section_and_content(
     self, results: list[dict[str, Any]]
-    ) -> list[dict[str, Any]]:
-        experiences: dict[str, dict[str, Any]] = {}
+    ) -> list[RetrievedExperience]:
+        experiences: dict[str, RetrievedExperience] = {}
 
         for r in results:
             exp = r["experience"]
@@ -74,32 +75,32 @@ class RetrievalPostProcessing:
             content = r["chunk"]
 
             if exp not in experiences:
-                experiences[exp] = {
-                    "experience": exp,
-                    "chunks": []
-                }
+                experiences[exp] = RetrievedExperience(
+                    experience=exp,
+                    chunks=[]
+                )
 
             # Déduplication sur (section, content)
             existing_chunk = next(
                 (
                     chunk
-                    for chunk in experiences[exp]["chunks"]
-                    if chunk["section"] == section
-                    and chunk["content"] == content
+                    for chunk in experiences[exp].chunks
+                    if chunk.section == section
+                    and chunk.content == content
                 ),
                 None
             )
 
             if existing_chunk:
-                if need not in existing_chunk["retrieved_for"]:
-                    existing_chunk["retrieved_for"].append(need)
+                if need not in existing_chunk.retrieved_for:
+                    existing_chunk.retrieved_for.append(need)
             else:
-                experiences[exp]["chunks"].append(
-                    {
-                        "section": section,
-                        "content": content,
-                        "retrieved_for": [need],
-                    }
+                experiences[exp].chunks.append(
+                    RetrievedChunk(
+                        section=section,
+                        content=content,
+                        retrieved_for=[need],
+                    )
                 )
 
         return list(experiences.values())

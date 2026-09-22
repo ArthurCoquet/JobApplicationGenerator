@@ -1,6 +1,7 @@
 from Infrastructures.llm_inference import LlmInference
 import logging
 from Schemas.rerank_format import MinimalistRerank
+from Schemas.job_offer import JobOffer
 from Helpers.OfferRepository import OfferRepository
 from config.settings import Settings
 
@@ -21,18 +22,12 @@ class ExperienceReranker:
         
         self.system_prompt_path = system_prompt_path or settings.reranking_system_prompt_path
 
-    def rerank_experiences(self, offer_path: str) -> None:
+    def rerank_experiences(self, job_offer: JobOffer) -> None:
 
-        data = self.offer_repo.load(offer_path)
-
-        res = self.llm.chat_completion_with_format(
-            content=data["retrieval"], 
+        job_offer.rerank = self.llm.chat_completion_with_format(
+            content=job_offer.retrieval, 
             response_format=MinimalistRerank, 
             system_prompt_path=self.system_prompt_path
         )
-
-        data["rerank"] = res
-
-        self.offer_repo.save(offer_path, data)
 
         logger.info("Done reranking experiences")

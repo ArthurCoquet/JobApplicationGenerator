@@ -1,15 +1,13 @@
-import json 
-from Schemas.job_analysis import Need
-from typing import Any
+from Schemas.job_offer import JobOffer
+from Schemas.search_query import SearchQuery
 
-def write_queries(filepath: str) -> list[dict[str, str|int]]:
+def write_queries(job_offer: JobOffer) -> list[SearchQuery]:
     """
     Construit les requêtes de recherche utilisées pour interroger le vectorstore
     à partir des besoins extraits de l'analyse de l'offre d'emploi.
 
     Args:
-        filepath: chemin vers le fichier JSON contenant l'analyse structurée
-            de l'offre d'emploi.
+        job_offer: structure contenant l'analyse structurée de l'offre d'emploi.
 
     Returns:
         list[SearchQuery]:
@@ -22,16 +20,16 @@ def write_queries(filepath: str) -> list[dict[str, str|int]]:
             - sa priorité
             - son domaine d'impact
     """
-    with open(filepath, "r", encoding="utf-8") as f:
-        data = json.load(f)
 
-    retrieval = data.get("offer_analysis", {})
-    needs = retrieval.get("needs", [])
+    if job_offer.offer_analysis is None:
+        raise ValueError("offer_analysis has not been computed yet")
 
-    queries: list[dict[str, Any]] = []
+    needs = job_offer.offer_analysis.needs
+
+    queries: list[SearchQuery] = []
     
     for need in needs:
-        need = Need(**need)
+
         query_parts = [
             need.name,
             need.description,

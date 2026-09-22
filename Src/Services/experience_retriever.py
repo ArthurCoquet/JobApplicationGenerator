@@ -2,7 +2,8 @@ from Services.write_queries import write_queries
 from Infrastructures.vector_search import VectorSearch
 from config.settings import Settings
 from Helpers.OfferRepository import OfferRepository
-
+from Schemas.job_offer import JobOffer
+from Schemas.retrieval import Retrieval
 
 class ExperienceRetriever:
 
@@ -19,18 +20,18 @@ class ExperienceRetriever:
 
     async def retrieve_experience(
             self,
-            offer_path: str
+            job_offer: JobOffer
     ):
 
-        queries = write_queries(offer_path)
+        queries = write_queries(job_offer)
 
         grouped_batch = await self.vector_search.retrieval_batch(queries)
 
-        data = self.offer_repo.load(offer_path)
-
-        data["retrieval"] = {
-                    "needs": data["offer_analysis"]["needs"],
-                    "experiences": grouped_batch
-                }
+        if job_offer.offer_analysis is None:
+            raise ValueError("offer_analysis has not been computed yet")
         
-        self.offer_repo.save(offer_path, data)
+        job_offer.retrieval = Retrieval(
+            needs=job_offer.offer_analysis.needs,
+            experiences=grouped_batch
+        )
+        
