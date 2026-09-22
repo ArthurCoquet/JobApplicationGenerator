@@ -68,6 +68,7 @@ def build_application(
     )
 
     return Application(
+        offer_repo=offer_repo,
         analyzer=analyzer,
         retriever=retriever,
         reranker=reranker,

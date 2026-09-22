@@ -3,7 +3,7 @@ import asyncio
 from config.settings import get_settings
 from Application.build_application import build_application
 from Application.pipeline import pipeline
-from Schemas.job_offer_input import JobOfferInput
+from Schemas.job_offer import JobOffer
 
 URL="https://www.welcometothejungle.com/fr/companies/ministere-des-armees-fr/jobs/data-analyst_merignac"
 TITLE="Data Analyst - TEST - Civils de la Défense - Ministère des Armées et des Anciens combattants"
@@ -33,7 +33,7 @@ async def main():
 
     application = build_application(settings)
 
-    job_offer = JobOfferInput(
+    job_offer = JobOffer(
         url=URL,
         title=TITLE,
         content=CONTENT

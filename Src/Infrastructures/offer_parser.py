@@ -2,22 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import logging 
-from dataclasses import dataclass, asdict
-
-@dataclass
-class JobOffer:
-    """
-    Représente une offre d'emploi nettoyée provenant d'une source quelconque (Indeed, LinkedIn, WelcomeToTheJungle, etc.).
-    Sera donné tel quel au llm pour qu'il puisse extraire uniquement le contenu de l'offre et supprimer le texte non pertinent.
-
-    attributes : 
-        - title : intitulé du poste
-        - url : lien vers l'offre originale
-        - content : Description complète de l'offre
-    """
-    title: str
-    url: str
-    content: str
+from dataclasses import asdict
+from Schemas.job_offer import JobOffer
 
 logger = logging.getLogger(__name__) # Crée un logger spécifique à ce fichier et qui porte le nom de ce fichier 
 logging.basicConfig( # configure le système de logs 
@@ -128,9 +114,7 @@ def saveOffer(
     return job_offer
 
 def saveOfferNoScrapping(
-    offer_as_str: str,
-    url: str,
-    offer_title: str
+    job_offer: JobOffer
 ) -> tuple[JobOffer, str]:
     """
     Récupère une offre d'emploi depuis un string, l'extrait,
@@ -150,17 +134,16 @@ def saveOfferNoScrapping(
         filepath : chemin d'accès de l'offre structurée
     """
 
-    job_offer = JobOffer(    # Création de l'objet métier
-        title=offer_title,
-        url=url,
-        content=offer_as_str,
-    )
-
-    filepath = rf"Offers\{offer_title}.json"
+    filepath = rf"Offers\{job_offer.title}.json"
     
     with open(filepath, "w", encoding="utf-8") as f: # Sauvegarde JSON (conversion dataclass → dict)
-        json.dump(asdict(job_offer), f, indent=4, ensure_ascii=False)
+        json.dump(
+            job_offer.model_dump(),
+            f,
+            indent=4,
+            ensure_ascii=False
+        )
 
-    logger.info("Offre %s écrite dans Offers\\%s.json", url, offer_title)
+    logger.info("Offre %s écrite dans Offers\\%s.json", job_offer.url, job_offer.title)
 
     return job_offer, filepath

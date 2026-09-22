@@ -1,20 +1,19 @@
-from Infrastructures.offer_parser import saveOfferNoScrapping
-from Schemas.job_offer_input import JobOfferInput
 from Schemas.application import Application
+from Schemas.job_offer import JobOffer    
 
 async def pipeline(
         application: Application,
-        job_offer: JobOfferInput
-    ):
+        job_offer: JobOffer
+    ):    
 
-    _job_offer, offer_path = saveOfferNoScrapping(
-        job_offer.content,
-        job_offer.url,
-        job_offer.title
-    )
+    offer_path = rf"Offers\{job_offer.title}.json"
 
-    application.analyzer.analyze(offer_path=offer_path)
-    
+    application.offer_repo.save(path=offer_path, data=job_offer.model_dump())
+
+    application.analyzer.analyze(job_offer)
+
+    application.offer_repo.save(path=offer_path, data=job_offer.model_dump())
+
     await application.retriever.retrieve_experience(offer_path=offer_path)
 
     application.reranker.rerank_experiences(offer_path=offer_path)
@@ -27,5 +26,7 @@ async def pipeline(
     application.offer_enricher.add_exp_and_facts(offer_path=offer_path, top_experiences=top_experiences_names)
 
     application.resume_writer.write_resume(offer_path=offer_path)
+
+    #render resume
 
     application.letter_writer.write_cover_letter(offer_path=offer_path)

@@ -53,5 +53,7 @@ class WritingDecider:
             exp["experience"] 
             for exp in evaluated_experiences
         ]
+
+        #ajouter retour job_offer avec job_offer.top_experiences_names = [exp["experience"] for exp in evaluated_experiences]
         
         return should_write, top_experiences_names

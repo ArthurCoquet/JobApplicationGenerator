@@ -1,11 +1,11 @@
 #Code from https://build.nvidia.com/nvidia/nemotron-3-super-120b-a12b
 from openai import OpenAI
 import logging
-from typing import Any, Type
 from pydantic import BaseModel
 from config.settings import Settings
+from typing import TypeVar
 
-response_format: Type[BaseModel]
+T = TypeVar("T", bound=BaseModel)
 
 logger = logging.getLogger(__name__)
 
@@ -60,7 +60,7 @@ class LlmInference:
             logger.error("System prompt introuvable: %s", path)
             raise
 
-    def chat_completion_with_format(self, content: str, response_format: Type[BaseModel], system_prompt_path: str) -> dict[str, Any]:
+    def chat_completion_with_format(self, content: str, response_format: type[T], system_prompt_path: str) -> T:
         """
         Effectue un appel au LLM avec le prompt système + message utilisateur. Utilise le format JobAnalysisResponse
         """
@@ -76,7 +76,6 @@ class LlmInference:
 
         usage = completion.usage
 
-        print(usage)
         if usage:
             logger.info(
                 "LLM usage: prompt=%s, cached=%s, completion=%s",
@@ -87,8 +86,8 @@ class LlmInference:
 
         message = completion.choices[0].message 
         if message.parsed:
-            return message.parsed.model_dump()
-        return {}
+            return message.parsed
+        raise ValueError("LLM did not return a response.")
     
     def _chat_completion(self, content: str):
         """

@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from Helpers.OfferRepository import OfferRepository
 from Services.offer_analyzer import OfferAnalyzer
 from Services.experience_retriever import ExperienceRetriever
 from Services.experience_reranker import ExperienceReranker
@@ -9,6 +10,7 @@ from Services.letter_writer import LetterWriter
 
 @dataclass
 class Application:
+    offer_repo: OfferRepository
     analyzer: OfferAnalyzer
     retriever: ExperienceRetriever
     reranker: ExperienceReranker
