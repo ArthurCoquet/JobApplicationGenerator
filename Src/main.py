@@ -5,22 +5,26 @@ from Application.build_application import build_application
 from Application.pipeline import pipeline
 from Schemas.job_offer_input import JobOfferInput
 
-URL="https://www.hellowork.com/fr-fr/emplois/80062195.html"
-TITLE="Data Analyst - Audensiel Technologies"
+URL="https://www.welcometothejungle.com/fr/companies/ministere-des-armees-fr/jobs/data-analyst_merignac"
+TITLE="Data Analyst - TEST - Civils de la Défense - Ministère des Armées et des Anciens combattants"
 CONTENT="""
-Les missions du poste
-Dans le cadre du développement de notre gouvernance des données et de la modernisation de nos outils de pilotage, nous renforçons nos équipes techniques en recrutant un(e ) Data Analyst, expert(e) en technologies SQL et Power BI.
+Vos missions en quelques mots
 
-Le profil recherché
-Sous la responsabilité du Responsable de la Business Intelligence, le/la Data Analyst aura pour mission principale de structurer les données de l'organisation et de concevoir les outils d'aide à la décision à destination des directions métiers.
+Le Data Analyst est un acteur de premier plan dans la collecte, l’analyse, l’interprétation et la présentation des données permettant d’orienter les décisions stratégiques du CTAAE. Placé sous la responsabilité hiérarchique du chef de la division data, vous serez en contact permanent avec le commandement du CTAAE, les référents métier et les spécialistes data du centre numérique de la donnée (CNDAAE) de Mont-de-Marsan.
+Votre principale mission sera d’analyser et d’interpréter les données afin d’en extraire des informations pertinentes pour guider les stratégies des opérationnels et des référents métier. Dans ce cadre,
 
-À ce titre, vos fonctions se déclinent comme suit :
+Vous collecterez et structurerez les données issues de différentes sources ;
+Vous analyserez les données pour identifier des tendances et des opportunités ;
+Vous créerez des rapports et des tableaux de bord interactifs ;
+Vous collaborerez avec les équipes métier pour définir leurs besoins en données ;
+Vous participerez à des projets de transformation digitale impliquant la donnée ;
+Vous assurerez la qualité et la sécurité des données analysées.
 
-Collecte et modélisation des données : Concevoir, optimiser et exécuter des requêtes SQL complexes pour extraire, nettoyer et consolider les données issues de nos différents systèmes d'information (ERP, CRM, Data Warehouse).
-Développement de solutions décisionnelles : Concevoir, réaliser et maintenir les tableaux de bord et rapports dynamiques sous Power BI, en veillant à la pertinence des indicateurs (KPIs) et à la qualité visuelle des livrables.
-Analyse de performance : Produire des analyses statistiques et des notes de synthèse pour éclairer les choix stratégiques et opérationnels de la direction.
-Accompagnement au changement : Assurer la maintenance évolutive des rapports existants, rédiger la documentation technique et fonctionnelle, et animer des sessions de formation pour accompagner la montée en compétences des utilisateurs finaux (Data Literacy).
+Profil recherché
+Profil recherché
 
+Issu d’une formation d’un bac+5 ou équivalent dans le domaine de l’informatique, des systèmes d’information ou de la donnée, vous justifiez d’une expérience professionnelle dans le domaine de la collecte, l’analyse, l’interprétation et la présentation des données.
+Vous possédez de bonnes connaissances dans la mise en œuvre et l’utilisation des outils et méthodes pour organiser, synthétiser et valoriser les données pour aider les décideurs dans leur prise de décision. Vous avez une compétence avérée à travailler en équipe et en mode projet (proactif, rigoureux, méthodique) avec une forte adaptabilité. Enfin, votre capacité à être force de proposition et votre sens de l’engagement sont indispensables à la réalisation des missions de votre poste.
 """
 
 async def main():

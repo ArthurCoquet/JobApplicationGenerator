@@ -71,14 +71,14 @@ def html_to_pdf(
 if __name__ == "__main__":
 
     html = render_resume(
-        json_path=r"Offers\Data Analyst - Audensiel Technologies.json",
-        template_path=r"C:\Users\arthu\OneDrive\Bureau\TailoredResume\Templates\resume_template.html"
+        json_path=r"C:\Users\arthu\OneDrive\Bureau\JobApplicationGenerator\Offers\Data Analyst - TEST - Civils de la Défense - Ministère des Armées et des Anciens combattants.json",
+        template_path=r"C:\Users\arthu\OneDrive\Bureau\JobApplicationGenerator\Medias\resume_template.html"
     )
 
     html_to_pdf(
         html=html,
-        html_path="output.html",
-        pdf_path="output.pdf",
+        html_path=r"Generated\output.html",
+        pdf_path=r"Generated\output.pdf",
     )
 
     print("HTML généré : output.html")
