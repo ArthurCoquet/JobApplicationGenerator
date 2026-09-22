@@ -1,4 +1,4 @@
 from pydantic import BaseModel
 
-class formatLibre(BaseModel): 
+class CoverLetter(BaseModel): 
     res: str
