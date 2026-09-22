@@ -12,3 +12,4 @@ torch
 torchvision
 sentence-transformers
 pydantic-settings
+playwright #python -m playwright install chromium

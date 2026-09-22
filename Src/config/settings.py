@@ -49,6 +49,11 @@ class Settings(BaseSettings):
         alias="RERANKING_SYSTEM_PROMPT_PATH",
     )
 
+    resume_writing_system_prompt_path: str = Field(
+        default="Prompts/resume_writing.txt",
+        alias="RESUME_WRITING_SYSTEM_PROMPT_PATH"
+    )
+
     plan_writing_system_prompt_path: str = Field(
         default="Prompts/plan_writing.txt",
         alias="PLAN_WRITING_SYSTEM_PROMPT_PATH"

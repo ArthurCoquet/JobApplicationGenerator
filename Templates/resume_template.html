@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>CV HTML</title>
+<style>
+    /* Style global pour le CV */
+    @page {
+        size: A4;
+        margin: 0;
+    }
+
+    html, body {
+        width: 21cm;
+        height: 29.7cm;
+        margin: 0;
+        padding: 0;
+    }
+
+    .page {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        border: none; /* à enlever pour le PDF */
+        display: flex;
+    }
+
+    .left-panel-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        row-gap: 0.2cm;
+        margin-top: 1cm;
+        margin-left: 0.1cm;
+        margin-right: 0.1cm;
+        width: 30%; /* w="3" */
+    }
+
+    .profile-picture {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        align-items: center;
+    }
+
+    .profile-picture img {
+        width: 4cm;
+        height: 5.33cm;
+        object-fit: cover;
+    }
+
+    .my-job-title {
+        font-family: Helvetica, Arial, sans-serif;
+        font-weight: bold;
+        font-size: 12pt;
+        width: 100%;
+        text-align: center;
+        margin: 0;
+    }
+
+    .left-panel-infos {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+    }
+
+    .title-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        margin-bottom: 0.2cm;
+        padding-top: 0.1cm;
+        padding-bottom: 0.1cm;
+        row-gap: 0.1cm;
+    }
+
+    .title-wrapper {
+        width: 90%;
+        background-color: #555284;
+        color: #FFFFFF;
+        margin: auto;
+    }
+
+    .title-wrapper .title {
+        margin: 0;
+        font-family: Helvetica, Arial, sans-serif;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .title-wrapper .underline-bar {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0.1cm;
+        height: 0.05cm;
+        background-color: #FFFFFF;
+    }
+
+    .contact-info-section .contact {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        row-gap: 0.1cm;
+        margin-bottom: 0.2cm;
+    }
+
+    .contact .text {
+        font-size: 10pt;
+    }
+
+    .contact .contact-item-wrapper {
+        padding-left: 10px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        column-gap: 10px;
+        align-items: center;
+        justify-content: start;
+        width: 100%;
+        box-sizing: border-box;
+
+    }
+
+    .contact .contact-item-wrapper > svg {
+        flex-shrink: 0;
+        max-width: 30%;
+    }
+
+    .contact .contact-item-wrapper .text {
+        overflow-wrap: break-word;
+        word-break: break-word;
+        min-width: none;
+        flex: 1;
+    }
+
+    .expertises-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+    }
+    .expertises-title-wrapper {
+        width: fit-content;
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-left: 0.5cm;
+        background-color: #555284;
+        border-radius: 5px;
+    }
+
+    .expertises-title-wrapper .title {
+        margin: 0;
+        font-size: 12pt;
+        font-weight: 700;
+        color: #FFFFFF;
+
+
+    }
+
+    .expertises-bullet-points ul {
+    margin-top: 0.1cm;
+    margin-bottom: 0.2cm;
+    padding-left: 1.2cm;   /* ta valeur */
+    width: 100%;
+    list-style-position: outside;
+    font-size: 11pt;
+}
+
+    .right-panel-container {
+        width: 70%;
+        margin-top: 1.5cm;
+    }
+    .header-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 0.2cm;
+        row-gap: 0.2cm;
+    }
+
+    .header-wrapper .name {
+        text-align: center;
+        font-size: 44pt;
+        margin: 0;
+    }
+
+    .header-wrapper .job-description-text {
+        text-align: left;
+        font-size: 11pt;
+        margin: 0;
+        font-weight: 400;
+        text-align: justify;
+        width: 95%;
+    }
+
+    .header-wrapper .underline-bar {
+        width: 100%;
+        height: 0.05cm;
+        background-color: #000000;
+        width: 95%;
+    }
+
+    .experience-title-wrapper {
+        background-color: #555284;
+        width: 95%;
+    }
+
+    .experience-title-wrapper .title {
+        margin-top: 0.1cm;
+        margin-bottom: 0.1cm;
+        margin-left: 0.1cm;
+        color: #FFFFFF;
+        font-size: 14pt;
+    }
+
+    .experience-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+
+    }
+    .experience-content-wrapper .experience-title {
+        font-size: 12pt;
+        margin: 0;
+        font-style: italic;
+        margin-bottom: 0.1cm;
+    }
+
+    .experience-bullet-points ul {
+        margin: 0;
+        margin-bottom: 0.2cm;
+        padding-left: 0.5cm;
+        padding-right: 0.5cm;
+        text-align: justify;
+        font-size: 11pt;
+    }
+    
+    .experience-content-wrapper .experience-subtitle {
+        margin: 0;
+        font-weight: 500;
+    }
+
+    
+</style>
+</head>
+<body>
+
+<div class="page">
+
+    <!-- ==================== LEFT PANEL ==================== -->
+
+    <div class="left-panel-container">
+
+        <!-- PHOTO -->
+        <div class="profile-picture">
+            {% if resume.sections.personal_info.picture %}
+                <img
+                    src="{{ resume.sections.personal_info.picture }}"
+                    alt="Photo de profil"
+                >
+            {% endif %}
+        </div>
+
+        <!-- TITRE -->
+        <h3 class="my-job-title">
+            {{ resume.sections.personal_info.title }}
+        </h3>
+
+        <div class="left-panel-infos">
+
+            <!-- ==================== CONTACT ==================== -->
+
+            <div class="contact-info-section">
+                <div class="contact">
+
+                    <div class="title-container">
+                        <div class="title-wrapper">
+                            <h3 class="title">COORDONNEES</h3>
+                            <div class="underline-bar"></div>
+                        </div>
+                    </div>
+
+                    {% set contact = resume.sections.contact_info %}
+
+                    {% if contact.phone %}
+                    <div class="contact-item-wrapper">
+                        <!-- téléphone SVG -->
+                        <div class="text">{{ contact.phone }}</div>
+                    </div>
+                    {% endif %}
+
+                    {% if contact.LinkedIn %}
+                    <div class="contact-item-wrapper">
+                        <!-- LinkedIn SVG -->
+                        <div class="text">{{ contact.LinkedIn }}</div>
+                    </div>
+                    {% endif %}
+
+                    {% if contact.GitHub %}
+                    <div class="contact-item-wrapper">
+                        <!-- GitHub SVG -->
+                        <div class="text">{{ contact.GitHub }}</div>
+                    </div>
+                    {% endif %}
+
+                    {% if contact.location %}
+                    <div class="contact-item-wrapper">
+                        <div class="text">{{ contact.location }}</div>
+                    </div>
+                    {% endif %}
+
+                    {% if contact.driving_license %}
+                    <div class="contact-item-wrapper">
+                        <!-- voiture SVG -->
+                        <div class="text">{{ contact.driving_license }}</div>
+                    </div>
+                    {% endif %}
+
+                </div>
+            </div>
+
+
+            <!-- ==================== EXPERTISES ==================== -->
+
+            {% set expertise = resume.sections.expertise_info %}
+
+            <div class="expertises-wrapper">
+
+                <div class="title-container">
+                    <div class="title-wrapper">
+                        <h3 class="title">EXPERTISES</h3>
+                        <div class="underline-bar"></div>
+                    </div>
+                </div>
+
+
+                {% if expertise.coding_langauges %}
+                <div class="expertises-title-wrapper">
+                    <h3 class="title">PROGRAMMATION</h3>
+                </div>
+
+                <div class="expertises-bullet-points">
+                    <ul>
+                        {% for skill in expertise.coding_langauges %}
+                            <li>{{ skill }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+
+                {% if expertise.tools %}
+                <div class="expertises-title-wrapper">
+                    <h3 class="title">OUTILS</h3>
+                </div>
+
+                <div class="expertises-bullet-points">
+                    <ul>
+                        {% for tool in expertise.tools %}
+                            <li>{{ tool }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+
+                {% if expertise.softwares %}
+                <div class="expertises-title-wrapper">
+                    <h3 class="title">LOGICIELS</h3>
+                </div>
+
+                <div class="expertises-bullet-points">
+                    <ul>
+                        {% for software in expertise.softwares %}
+                            <li>{{ software }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+
+                {% if expertise.languages %}
+                <div class="expertises-title-wrapper">
+                    <h3 class="title">LANGUES</h3>
+                </div>
+
+                <div class="expertises-bullet-points">
+                    <ul>
+                        {% for language in expertise.languages %}
+                            <li>{{ language }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+
+                {% if expertise.Hobbies %}
+                <div class="expertises-title-wrapper">
+                    <h3 class="title">LOISIRS</h3>
+                </div>
+
+                <div class="expertises-bullet-points">
+                    <ul>
+                        {% for hobby in expertise.Hobbies %}
+                            <li>{{ hobby }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- ==================== RIGHT PANEL ==================== -->
+
+    <div class="right-panel-container">
+
+        <!-- ==================== HEADER ==================== -->
+
+        {% set personal = resume.sections.personal_info %}
+
+        <div class="header-container">
+
+            <div class="header-wrapper">
+
+                <h1 class="name">
+                    {{ personal.first_name }} {{ personal.last_name }}
+                </h1>
+
+                <div class="underline-bar"></div>
+
+                {% if personal.description %}
+                <h4 class="job-description-text">
+                    {{ personal.description }}
+                </h4>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+        <!-- ==================== EXPERIENCES ==================== -->
+
+        {% if resume.sections.pro_experiences %}
+
+        <div class="professional-experiences-container">
+
+            <div class="title-container">
+                <div class="experience-title-wrapper">
+                    <h3 class="title">
+                        EXPERIENCES PROFESSIONNELLES
+                    </h3>
+                </div>
+            </div>
+
+            <div class="experience-content-wrapper">
+
+                {% for exp in resume.sections.pro_experiences %}
+
+                <h3 class="experience-title">
+
+                    {{ exp.title }}
+
+                    {% if exp.company %}
+                        | {{ exp.company }}
+                    {% endif %}
+
+                    {% if exp.location %}
+                        , {{ exp.location }}
+                    {% endif %}
+
+                    {% if exp.timeframe %}
+                        | {{ exp.timeframe }}
+                    {% endif %}
+
+                </h3>
+
+                {% if exp.bulletpoints %}
+
+                <div class="experience-bullet-points">
+
+                    <ul>
+
+                        {% for bullet in exp.bulletpoints %}
+
+                            <li>{{ bullet }}</li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                </div>
+
+                {% endif %}
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- ==================== FORMATION ==================== -->
+
+        {% if resume.sections.education %}
+
+        <div class="education-container">
+
+            <div class="title-container">
+                <div class="experience-title-wrapper">
+                    <h3 class="title">FORMATION</h3>
+                </div>
+            </div>
+
+            <div class="experience-content-wrapper">
+
+                {% if resume.sections.education.title %}
+
+                <h3 class="experience-title">
+                    {{ resume.sections.education.title }}
+                </h3>
+
+                {% endif %}
+
+                {% if resume.sections.education.bulletpoints %}
+
+                <div class="experience-bullet-points">
+
+                    <ul>
+
+                        {% for bullet in resume.sections.education.bulletpoints %}
+
+                            <li>{{ bullet }}</li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

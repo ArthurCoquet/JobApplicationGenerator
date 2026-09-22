@@ -19,4 +19,13 @@ async def pipeline(
 
     application.reranker.rerank_experiences(offer_path=offer_path)
 
-    application.writer.write_cover_letter(offer_path=offer_path)
+    should_write, top_experiences_names = application.writing_decider.do_write(offer_path=offer_path)
+
+    if not should_write:
+        return
+
+    application.offer_enricher.add_exp_and_facts(offer_path=offer_path, top_experiences=top_experiences_names)
+
+    application.resume_writer.write_resume(offer_path=offer_path)
+
+    application.letter_writer.write_cover_letter(offer_path=offer_path)

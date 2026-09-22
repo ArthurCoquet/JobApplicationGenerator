@@ -2,10 +2,13 @@ from config.settings import Settings
 from Infrastructures.llm_inference import LlmInference
 from Infrastructures.vector_search import VectorSearch
 from Infrastructures.retrieval_post_processing import RetrievalPostProcessing
-from Services.experience_reranker import ExperienceReranker
-from Services.letter_writer import LetterWriter
 from Services.offer_analyzer import OfferAnalyzer
 from Services.experience_retriever import ExperienceRetriever
+from Services.experience_reranker import ExperienceReranker
+from Services.writing_decision import WritingDecider
+from Services.offer_enricher import OfferEnricher
+from Services.resume_writer import ResumeWriter
+from Services.letter_writer import LetterWriter
 from Helpers.OfferRepository import OfferRepository
 from Schemas.application import Application
 
@@ -42,7 +45,23 @@ def build_application(
         settings=settings
     )
 
-    writer = LetterWriter(
+    writing_decider = WritingDecider(
+        settings=settings,
+        offer_repo=offer_repo
+    )
+
+    offer_enricher = OfferEnricher(
+        settings=settings,
+        offer_repo=offer_repo
+    )
+
+    resume_writer = ResumeWriter(
+        llm=llm,
+        offer_repo=offer_repo,
+        settings=settings
+    )
+
+    letter_writer = LetterWriter(
         llm=llm, 
         offer_repo=offer_repo, 
         settings=settings
@@ -52,5 +71,8 @@ def build_application(
         analyzer=analyzer,
         retriever=retriever,
         reranker=reranker,
-        writer=writer
+        writing_decider=writing_decider,
+        offer_enricher=offer_enricher,
+        resume_writer=resume_writer,
+        letter_writer=letter_writer
     )
