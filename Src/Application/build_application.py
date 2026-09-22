@@ -22,7 +22,6 @@ def build_application(
 
     analyzer = OfferAnalyzer(
         llm=llm,
-        offer_repo=offer_repo,
         settings=settings
     )
 
@@ -35,19 +34,16 @@ def build_application(
 
     retriever = ExperienceRetriever(
         settings=settings,
-        offer_repo=offer_repo,
         vector_search=vector_search
     )
 
     reranker = ExperienceReranker(
         llm=llm, 
-        offer_repo=offer_repo, 
         settings=settings
     )
 
     writing_decider = WritingDecider(
         settings=settings,
-        offer_repo=offer_repo
     )
 
     offer_enricher = OfferEnricher(
@@ -57,13 +53,11 @@ def build_application(
 
     resume_writer = ResumeWriter(
         llm=llm,
-        offer_repo=offer_repo,
         settings=settings
     )
 
     letter_writer = LetterWriter(
         llm=llm, 
-        offer_repo=offer_repo, 
         settings=settings
     )
 

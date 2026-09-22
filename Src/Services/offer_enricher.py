@@ -1,5 +1,6 @@
 from Helpers.OfferRepository import OfferRepository
 from config.settings import Settings
+from Schemas.job_offer import JobOffer
 
 class OfferEnricher:
 
@@ -12,16 +13,17 @@ class OfferEnricher:
         self.settings= settings
         self.offer_repo = offer_repo
 
-    def add_exp_and_facts(self, offer_path: str, top_experiences: list[str]) -> None:
+    def add_exp_and_facts(self, job_offer: JobOffer) -> None:
 
-        data = self.offer_repo.load(offer_path)
         experiences = self.offer_repo.load(self.settings.complete_experiences_filepath)
         personal_facts = self.offer_repo.load(self.settings.personal_facts_filepath)
 
-        for k, v in experiences.items():
-            if k in top_experiences:
-                data[k] = v
+        job_offer.personal_facts = personal_facts
 
-        data["personal_facts"] = personal_facts
+        if job_offer.top_experiences_names is None:
+            raise ValueError("top_experiences_names has not been computed yet.")
 
-        self.offer_repo.save(path=offer_path, data=data)
+        for name in job_offer.top_experiences_names:
+            if name in experiences:
+                setattr(job_offer, name, experiences[name])
+

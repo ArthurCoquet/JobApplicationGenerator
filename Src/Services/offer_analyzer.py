@@ -1,5 +1,4 @@
 from Infrastructures.llm_inference import LlmInference
-from Helpers.OfferRepository import OfferRepository
 from config.settings import Settings
 from Schemas.job_analysis import JobAnalysisResponse
 from Schemas.job_offer import JobOffer    
@@ -9,12 +8,10 @@ class OfferAnalyzer:
     def __init__(
             self,
             llm: LlmInference,
-            offer_repo: OfferRepository,
             settings: Settings
             ) -> None:
 
         self.llm = llm
-        self.offer_repo = offer_repo
         self.settings = settings
         
     def analyze(

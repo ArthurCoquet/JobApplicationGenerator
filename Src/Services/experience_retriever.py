@@ -1,7 +1,6 @@
 from Services.write_queries import write_queries
 from Infrastructures.vector_search import VectorSearch
 from config.settings import Settings
-from Helpers.OfferRepository import OfferRepository
 from Schemas.job_offer import JobOffer
 from Schemas.retrieval import Retrieval
 
@@ -10,12 +9,10 @@ class ExperienceRetriever:
     def __init__(
             self,
             settings: Settings,
-            offer_repo: OfferRepository,
             vector_search: VectorSearch
         ) -> None:
 
         self.settings = settings
-        self.offer_repo = offer_repo
         self.vector_search = vector_search
 
     async def retrieve_experience(

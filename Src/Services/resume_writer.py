@@ -1,7 +1,8 @@
 from config.settings import Settings
-from Helpers.OfferRepository import OfferRepository
 from Infrastructures.llm_inference import LlmInference
 from Schemas.write_resume import Resume
+from Schemas.job_offer import JobOffer
+import json 
 
 class ResumeWriter:
 
@@ -9,35 +10,27 @@ class ResumeWriter:
             self,
             llm: LlmInference,
             settings: Settings,
-            offer_repo: OfferRepository
         ) -> None:
 
         self.llm = llm
-        self.offer_repo = offer_repo
         self.settings = settings
 
     def write_resume(
         self,
-        offer_path: str
+        job_offer: JobOffer
     ) -> None:
         
-        data = self.offer_repo.load(path=offer_path)
-
-        llm_data = {
-            key: value
-            for key, value in data.items()
-            if key != "rerank"
-        }
+        llm_data = job_offer.model_dump(
+            exclude={"rerank", "resume"}
+        )
 
         # Ecriture du plan de rédaction par le llm
 
-        resume = self.llm.chat_completion_with_format(
-            content=str(llm_data), 
+        job_offer.resume = self.llm.chat_completion_with_format(
+            content=json.dumps(
+                llm_data,
+                ensure_ascii=False
+            ), 
             response_format=Resume, 
             system_prompt_path=self.settings.resume_writing_system_prompt_path
-        )
-
-        data["resume"] = resume
-
-        self.offer_repo.save(path=offer_path, data=data)
-        
+        )        
