@@ -926,33 +926,6 @@ The key architectural principle is:
 
 ---
 
-# Security and privacy
-
-Candidate profiles can contain sensitive personal and professional information.
-
-For local development:
-
-* never commit `.env`;
-* never commit real candidate profiles;
-* never commit generated application documents containing personal information;
-* use fictional example data in the repository;
-* avoid embedding personal information in prompts or tests;
-* review Git history before publishing the repository.
-
-A public repository should contain only:
-
-```text
-code
-+
-generic configuration
-+
-fictional examples
-```
-
-and not a real candidate profile.
-
----
-
 # Development status
 
 **Status: Experimental / research-oriented prototype**
@@ -967,31 +940,6 @@ The project is primarily intended to explore:
 * grounding and factual consistency.
 
 It should not currently be considered a production-grade automated recruitment system.
-
----
-
-# Contributing
-
-Contributions are welcome, particularly around:
-
-* retrieval quality;
-* evaluation methodology;
-* grounding;
-* structured domain models;
-* testing;
-* observability;
-* alternative reranking strategies.
-
-When contributing, please avoid adding real personal information to:
-
-* fixtures;
-* tests;
-* examples;
-* documentation;
-* prompts;
-* repository history.
-
-Use synthetic candidate data instead.
 
 ---
 
