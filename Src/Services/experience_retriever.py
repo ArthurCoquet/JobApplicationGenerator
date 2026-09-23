@@ -22,7 +22,7 @@ class ExperienceRetriever:
 
         queries = write_queries(job_offer)
 
-        grouped_batch = await self.vector_search.retrieval_batch(queries)
+        grouped_batch, _ready_for_rerank = await self.vector_search.retrieval_batch(queries)
 
         if job_offer.offer_analysis is None:
             raise ValueError("offer_analysis has not been computed yet")

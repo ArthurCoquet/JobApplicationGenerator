@@ -1,0 +1,274 @@
+{
+    "needs": {
+        "Translate data into decision support": {
+            "priority": 5,
+            "description": "Analyze and interpret data to produce actionable insights that guide strategic and operational decisions.",
+            "implicit_signals": [
+                "Decision-support orientation",
+                "Ability to extract relevant information from raw data",
+                "Focus on business value from analysis",
+                "Support to commanders and business stakeholders"
+            ],
+            "area": "Strategic decision-making"
+        },
+        "Build reporting and dashboards": {
+            "priority": 4,
+            "description": "Create reports and interactive dashboards to present data clearly to stakeholders.",
+            "implicit_signals": [
+                "Data visualization",
+                "Self-service reporting",
+                "Stakeholder-facing deliverables",
+                "Interactive BI outputs"
+            ],
+            "area": "Reporting and information dissemination"
+        },
+        "Collect and structure multi-source data": {
+            "priority": 4,
+            "description": "Gather, organize, and structure data coming from different sources for analysis.",
+            "implicit_signals": [
+                "Data integration",
+                "Data preparation",
+                "Source heterogeneity",
+                "Data structuring"
+            ],
+            "area": "Data pipeline and preparation"
+        },
+        "Collaborate with business teams to define needs": {
+            "priority": 4,
+            "description": "Work with operational teams and business referents to identify and formalize their data needs.",
+            "implicit_signals": [
+                "Requirements gathering",
+                "Cross-functional communication",
+                "Business alignment",
+                "User-centered analysis"
+            ],
+            "area": "Stakeholder management and requirements"
+        },
+        "Ensure data quality and security": {
+            "priority": 4,
+            "description": "Maintain the quality and security of analyzed data throughout the process.",
+            "implicit_signals": [
+                "Data governance",
+                "Security awareness",
+                "Reliability of analysis",
+                "Compliance-minded handling of data"
+            ],
+            "area": "Data governance and risk control"
+        },
+        "Contribute to digital transformation projects": {
+            "priority": 3,
+            "description": "Participate in projects where data supports broader digital transformation initiatives.",
+            "implicit_signals": [
+                "Project-based work",
+                "Change support",
+                "Process improvement through data",
+                "Transformation context"
+            ],
+            "area": "Digital transformation"
+        }
+    },
+    "Egis": {
+        "categories": {
+            "Résultats": [
+                {
+                    "chunk": "Modèle d’aide à la décision pour validation des durées travaux. Identification des limites structurelles des données. Recommandations de gouvernance data. Contribution à la structuration d’une démarche data.",
+                    "retrieved_for": [
+                        "Translate data into decision support",
+                        "Build reporting and dashboards",
+                        "Collect and structure multi-source data",
+                        "Collaborate with business teams to define needs",
+                        "Ensure data quality and security",
+                        "Contribute to digital transformation projects"
+                    ]
+                }
+            ],
+            "Compétences": [
+                {
+                    "chunk": "Data analysis, data engineering, feature engineering, modélisation statistique, traduction métier-data, autonomie projet.",
+                    "retrieved_for": [
+                        "Translate data into decision support",
+                        "Build reporting and dashboards",
+                        "Collect and structure multi-source data",
+                        "Collaborate with business teams to define needs",
+                        "Ensure data quality and security",
+                        "Contribute to digital transformation projects"
+                    ]
+                }
+            ],
+            "Problèmes": [
+                {
+                    "chunk": "Fiabiliser des données non structurées et de qualité variable pour estimer les durées travaux en phase amont sans historique fiable ni standardisation.",
+                    "retrieved_for": [
+                        "Translate data into decision support",
+                        "Build reporting and dashboards",
+                        "Collect and structure multi-source data",
+                        "Collaborate with business teams to define needs",
+                        "Ensure data quality and security",
+                        "Contribute to digital transformation projects"
+                    ]
+                }
+            ],
+            "Actions": [
+                {
+                    "chunk": "Cadrage métier → data. Collecte et nettoyage multi-sources (planning, BIM, terrain). Feature engineering métier. Modélisation statistique (régressions, corrélations Python). Outil Excel/VBA pour industrialisation. Audit qualité et recommandations de gouvernance.",
+                    "retrieved_for": [
+                        "Translate data into decision support",
+                        "Build reporting and dashboards",
+                        "Collect and structure multi-source data",
+                        "Collaborate with business teams to define needs",
+                        "Ensure data quality and security",
+                        "Contribute to digital transformation projects"
+                    ]
+                }
+            ],
+            "Contexte": [
+                {
+                    "chunk": "Projet data sur infrastructures (Grand Paris) : exploitation de données travaux hétérogènes pour améliorer planification et prise de décision.",
+                    "retrieved_for": [
+                        "Collect and structure multi-source data",
+                        "Contribute to digital transformation projects"
+                    ]
+                }
+            ]
+        }
+    },
+    "MEV bot Ethereum": {
+        "categories": {
+            "Résultats": [
+                {
+                    "chunk": "Système opérationnel temps réel de traitement et décision automatisée. Validation en conditions réelles concurrentielles. Gain de performance via optimisation Rust.",
+                    "retrieved_for": [
+                        "Translate data into decision support",
+                        "Ensure data quality and security"
+                    ]
+                }
+            ],
+            "Problèmes": [
+                {
+                    "chunk": "Détecter et exploiter des opportunités sur flux mempool temps réel avec contraintes extrêmes de latence, concurrence et fiabilité.",
+                    "retrieved_for": [
+                        "Translate data into decision support",
+                        "Collect and structure multi-source data",
+                        "Collaborate with business teams to define needs",
+                        "Ensure data quality and security"
+                    ]
+                }
+            ],
+            "Compétences": [
+                {
+                    "chunk": "Rust, systèmes temps réel, blockchain, mempool, algorithmique, optimisation bas niveau, R&D autonome.",
+                    "retrieved_for": [
+                        "Collect and structure multi-source data"
+                    ]
+                }
+            ],
+            "Contexte": [
+                {
+                    "chunk": "Projet personnel de R&D : système backend temps réel pour exploiter des opportunités MEV sur Ethereum dans un environnement hautement concurrentiel.",
+                    "retrieved_for": [
+                        "Contribute to digital transformation projects"
+                    ]
+                }
+            ]
+        }
+    },
+    "Cherry Blossom Boutique Hotel": {
+        "categories": {
+            "Compétences": [
+                {
+                    "chunk": "Analyse de données marketing, growth marketing, SEO, optimisation de plateformes Airbnb, acquisition digitale, création de contenu, stratégie de visibilité locale, exécution opérationnelle end-to-end.",
+                    "retrieved_for": [
+                        "Translate data into decision support",
+                        "Build reporting and dashboards",
+                        "Collect and structure multi-source data",
+                        "Collaborate with business teams to define needs",
+                        "Ensure data quality and security",
+                        "Contribute to digital transformation projects"
+                    ]
+                }
+            ]
+        }
+    },
+    "Alten Labs": {
+        "categories": {
+            "Résultats": [
+                {
+                    "chunk": "Assistant IA temps réel fonctionnel en local. Réduction des hallucinations via RAG multi-sources. Architecture scalable et industrialisable",
+                    "retrieved_for": [
+                        "Translate data into decision support",
+                        "Build reporting and dashboards",
+                        "Contribute to digital transformation projects"
+                    ]
+                },
+                {
+                    "chunk": "Assistant IA fonctionnel, temps réel et utilisable en local. Réduction des hallucinations via RAG multi-sources. Architecture scalable et industrialisable.",
+                    "retrieved_for": [
+                        "Translate data into decision support",
+                        "Build reporting and dashboards"
+                    ]
+                }
+            ],
+            "Contexte": [
+                {
+                    "chunk": "Conception d’un assistant IA vocal pour maintenance industrielle en environnement contraint (temps réel ~300ms, offline, sécurité, données hétérogènes).",
+                    "retrieved_for": [
+                        "Translate data into decision support",
+                        "Build reporting and dashboards",
+                        "Collaborate with business teams to define needs",
+                        "Ensure data quality and security",
+                        "Contribute to digital transformation projects"
+                    ]
+                },
+                {
+                    "chunk": "Projet R&D en industrie 4.0 : conception d’un assistant IA vocal pour maintenance industrielle en environnement contraint (temps réel ~300ms, offline, sécurité, données hétérogènes).",
+                    "retrieved_for": [
+                        "Collaborate with business teams to define needs",
+                        "Contribute to digital transformation projects"
+                    ]
+                }
+            ],
+            "Problèmes": [
+                {
+                    "chunk": "Concevoir une architecture IA performante en environnement industriel contraint. Gérer des contraintes fortes de latence (~300ms) et fonctionnement offline. Traiter des données hétérogènes sans écosystème standard en C++",
+                    "retrieved_for": [
+                        "Build reporting and dashboards",
+                        "Collect and structure multi-source data",
+                        "Collaborate with business teams to define needs",
+                        "Ensure data quality and security"
+                    ]
+                },
+                {
+                    "chunk": "Concevoir une architecture IA performante en environnement industriel contraint. Contraintes fortes de latence (~300ms) et fonctionnement offline. Traitement de données hétérogènes sans écosystème C++ mature.",
+                    "retrieved_for": [
+                        "Collect and structure multi-source data",
+                        "Collaborate with business teams to define needs"
+                    ]
+                }
+            ]
+        }
+    },
+    "Squadra – Mondial de l’Auto (Hydrogène)": {
+        "categories": {
+            "Problèmes": [
+                {
+                    "chunk": "Rendre compréhensibles des technologies complexes (hydrogène, énergie, sécurité) pour des publics non techniques tout en gérant des questions critiques et enjeux d’image.",
+                    "retrieved_for": [
+                        "Build reporting and dashboards"
+                    ]
+                }
+            ]
+        }
+    },
+    "Lapland Ice Driving": {
+        "categories": {
+            "Résultats": [
+                {
+                    "chunk": "Système déployé en conditions réelles sans supervision. Collecte fiable malgré contraintes environnementales. Solution robuste, simplifiée et réplicable.",
+                    "retrieved_for": [
+                        "Ensure data quality and security"
+                    ]
+                }
+            ]
+        }
+    }
+}

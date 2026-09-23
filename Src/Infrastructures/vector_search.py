@@ -8,6 +8,7 @@ import logging
 from Infrastructures.retrieval_post_processing import RetrievalPostProcessing
 from config.settings import Settings
 from qdrant_client.models import Filter
+from typing import Any
 
 #from huggingface_hub import login
 
@@ -57,7 +58,7 @@ class VectorSearch():
             queries_list: list[SearchQuery], 
             qdrant_filter: Filter | None = None, 
             top_k_per_filter: int |None = None
-    ) -> list[RetrievedExperience]:
+    ) -> tuple[list[RetrievedExperience], dict[str, Any]]:
 
         top_k = (
             top_k_per_filter
@@ -96,7 +97,8 @@ class VectorSearch():
         
         parsed_batch = self.post_processing.parse_batch_result(batch_results, queries_list)
         grouped_batch = self.post_processing.group_by_experience_and_section_and_content(parsed_batch)
-        return grouped_batch
+        ready_for_rerank = self.post_processing.prepare_for_rerank(retrieved_data=grouped_batch, queries=queries_list)
+        return grouped_batch, ready_for_rerank
 
     async def close(self) -> None:
         """
