@@ -55,7 +55,7 @@ class VectorSearch():
     async def retrieval_batch(
             self,
             queries_list: list[SearchQuery], 
-            filter: Filter | None = None, 
+            qdrant_filter: Filter | None = None, 
             top_k_per_filter: int |None = None
     ) -> list[RetrievedExperience]:
 
@@ -79,7 +79,7 @@ class VectorSearch():
                 query=embed,
                 limit=top_k,
                 with_payload=True,
-                filter=filter
+                filter=qdrant_filter
             )
             for embed in embeddings
         ]
