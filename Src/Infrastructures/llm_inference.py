@@ -22,22 +22,19 @@ class LlmInference:
 
         Args:
             base_url: endpoint de l’API 
-            api_key: clé API NVIDIA
+            api_key: clé API 
             model: nom du modèle à utiliser
-            system_prompt_path: chemin vers le prompt système
             temperature: contrôle de la créativité du modèle
             top_p: contrôle du sampling nucleus
         """
         self.client = OpenAI(
-            base_url=None, #settings.llm_base_url,
+            base_url=settings.llm_base_url,
             api_key=settings.llm_api_key
         )
 
         self.model = settings.llm_model
         self.temperature = temperature
         self.top_p = top_p
-
-        self.system_prompt = ""
 
         logger.info(
             "LlmInference initialisé (model=%s, base_url=%s)",
@@ -60,19 +57,23 @@ class LlmInference:
             logger.error("System prompt introuvable: %s", path)
             raise
 
-    def chat_completion_with_format(self, content: str, response_format: type[T], system_prompt_path: str) -> T:
+    def generate_structured_response(self, content: str, response_format: type[T], system_prompt_path: str) -> T:
         """
         Effectue un appel au LLM avec le prompt système + message utilisateur. Utilise le format JobAnalysisResponse
         """
-        self.system_prompt = self.load_system_prompt(system_prompt_path)
+        system_prompt = self.load_system_prompt(system_prompt_path)
 
-        completion = self.client.chat.completions.parse(
-            model=self.model,
-            messages=[{"role": "system", "content": self.system_prompt}, {"role":"user","content":str(content)}],
-            temperature=0.2,
-            top_p=0.7,
-            response_format=response_format
-        )
+        try:
+            completion = self.client.chat.completions.parse(
+                model=self.model,
+                messages=[{"role": "system", "content": system_prompt}, {"role":"user","content":content}],
+                temperature=self.temperature,
+                top_p=self.top_p,
+                response_format=response_format
+            )
+        except Exception:
+            logger.exception("Erreur lors de l'appel au LLM")
+            raise
 
         usage = completion.usage
 
