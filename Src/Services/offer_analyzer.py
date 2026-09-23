@@ -19,7 +19,7 @@ class OfferAnalyzer:
             job_offer: JobOffer
         ):
         
-        job_offer.offer_analysis = self.llm.chat_completion_with_format(
+        job_offer.offer_analysis = self.llm.generate_structured_response(
             content=job_offer.content, 
             response_format=JobAnalysisResponse, 
             system_prompt_path=self.settings.offer_analysis_system_prompt_path)

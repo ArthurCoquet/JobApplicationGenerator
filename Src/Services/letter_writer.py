@@ -33,7 +33,7 @@ class LetterWriter:
         )
 
         # Ecriture du plan de rédaction par le llm
-        job_offer.plan = self.llm.chat_completion_with_format(
+        job_offer.plan = self.llm.generate_structured_response(
             content=content, 
             response_format=LetterPlan, 
             system_prompt_path=self.settings.plan_writing_system_prompt_path
@@ -51,7 +51,7 @@ class LetterWriter:
         content=json.dumps(letter_context, ensure_ascii=False, indent=2)
 
         ## Rédaction de la lettre de motivation par le llm
-        job_offer.cover_letter = self.llm.chat_completion_with_format(
+        job_offer.cover_letter = self.llm.generate_structured_response(
             content=content, 
             response_format=CoverLetter,
             system_prompt_path=self.settings.cover_letter_writing_system_prompt_path

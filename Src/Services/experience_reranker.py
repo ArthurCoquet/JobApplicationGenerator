@@ -30,7 +30,7 @@ class ExperienceReranker:
             ensure_ascii=False
         )
 
-        job_offer.rerank = self.llm.chat_completion_with_format(
+        job_offer.rerank = self.llm.generate_structured_response(
             content=retrieval_content, 
             response_format=MinimalistRerank, 
             system_prompt_path=self.system_prompt_path

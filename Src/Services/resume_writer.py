@@ -26,7 +26,7 @@ class ResumeWriter:
 
         # Ecriture du plan de rédaction par le llm
 
-        job_offer.resume = self.llm.chat_completion_with_format(
+        job_offer.resume = self.llm.generate_structured_response(
             content=json.dumps(
                 llm_data,
                 ensure_ascii=False
