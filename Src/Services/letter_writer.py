@@ -45,7 +45,7 @@ class LetterWriter:
     ) -> None:
 
         letter_context = job_offer.model_dump(
-            exclude={"rerank", "resume"}
+            exclude={"retrieval", "rerank", "resume"}
         )
 
         content=json.dumps(letter_context, ensure_ascii=False, indent=2)
