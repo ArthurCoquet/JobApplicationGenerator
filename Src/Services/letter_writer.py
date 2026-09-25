@@ -4,6 +4,7 @@ from Schemas.write_plan import LetterPlan
 from config.settings import Settings
 from Schemas.write_cover_letter import CoverLetter
 import json
+from pathlib import Path
 
 class LetterWriter:
 
@@ -55,5 +56,29 @@ class LetterWriter:
             content=content, 
             response_format=CoverLetter,
             system_prompt_path=self.settings.cover_letter_writing_system_prompt_path
+        )
+
+    def save_cover_letter(
+    self,
+    job_offer: JobOffer,
+    output_dir: str,
+    ) -> None:
+
+        output_path = (
+            Path(output_dir)
+            / job_offer.title
+            / "coverletter"
+        )
+
+        output_path.mkdir(
+            parents=True,
+            exist_ok=True
+        )
+
+        txt_path = output_path / "output.txt"
+
+        txt_path.write_text(
+            job_offer.cover_letter.res,
+            encoding="utf-8"
         )
         

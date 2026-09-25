@@ -1,85 +1,72 @@
 from pathlib import Path
-import json
 
 from jinja2 import Environment, FileSystemLoader
-from playwright.sync_api import sync_playwright
+from playwright.async_api import async_playwright
 
 
-def render_resume(json_path: str, template_path: str) -> str:
+class ResumeRenderer:
 
-    with open(json_path, "r", encoding="utf-8") as file:
-        data = json.load(file)
+    def __init__(
+        self,
+        template_path: str,
+        output_dir: str,
+    ):
+        self.template_path = Path(template_path)
+        self.output_dir = Path(output_dir)
 
-    template_path = Path(template_path)
+    async def render(self, job_offer) -> None:
 
-    env = Environment(
-        loader=FileSystemLoader(template_path.parent)
-    )
-
-    template = env.get_template(template_path.name)
-
-    return template.render(
-        resume=data["resume"]
-    )
-
-
-def html_to_pdf(
-    html: str,
-    html_path: str,
-    pdf_path: str,
-) -> None:
-
-    html_path = Path(html_path).resolve()
-    pdf_path = Path(pdf_path).resolve()
-
-    html_path.write_text(
-        html,
-        encoding="utf-8"
-    )
-
-    with sync_playwright() as p:
-
-        browser = p.chromium.launch()
-
-        page = browser.new_page(
-            viewport={
-                "width": 794,
-                "height": 1123,
-            }
+        env = Environment(
+            loader=FileSystemLoader(self.template_path.parent)
         )
 
-        page.goto(
-            html_path.as_uri(),
-            wait_until="networkidle"
+        template = env.get_template(self.template_path.name)
+
+        html = template.render(
+            resume=job_offer.resume
         )
 
-        page.pdf(
-            path=str(pdf_path),
-            format="A4",
-            print_background=True,
-            margin={
-                "top": "0",
-                "right": "0",
-                "bottom": "0",
-                "left": "0",
-            },
+        # output/{job_offer.title}/
+        job_output_dir = self.output_dir / job_offer.title / "resume"
+        job_output_dir.mkdir(
+            parents=True,
+            exist_ok=True
         )
 
-        browser.close()
+        html_path = job_output_dir / "output.html"
+        pdf_path = job_output_dir / "output.pdf"
 
+        html_path.write_text(
+            html,
+            encoding="utf-8"
+        )
 
-if __name__ == "__main__":
+        async with async_playwright() as p:
 
-    html = render_resume(
-        json_path=r"C:\Users\arthu\OneDrive\Bureau\JobApplicationGenerator\Offers\Data Analyst - TEST - Civils de la Défense - Ministère des Armées et des Anciens combattants.json",
-        template_path=r"C:\Users\arthu\OneDrive\Bureau\JobApplicationGenerator\Medias\resume_template.html"
-    )
+            browser = await p.chromium.launch()
 
-    html_to_pdf(
-        html=html,
-        html_path=r"Generated\output.html",
-        pdf_path=r"Generated\output.pdf",
-    )
+            page = await browser.new_page(
+                viewport={
+                    "width": 794,
+                    "height": 1123,
+                }
+            )
 
-    print("HTML généré : output.html")
-    print("PDF généré  : output.pdf")
+            await page.goto(
+                html_path.resolve().as_uri(),
+                wait_until="networkidle"
+            )
+
+            await page.pdf(
+                path=str(pdf_path),
+                format="A4",
+                print_background=True,
+                margin={
+                    "top": "0",
+                    "right": "0",
+                    "bottom": "0",
+                    "left": "0",
+                },
+            )
+
+            await browser.close()

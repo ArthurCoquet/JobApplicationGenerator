@@ -7,6 +7,7 @@ from Services.experience_retriever import ExperienceRetriever
 from Services.experience_reranker import ExperienceReranker
 from Services.writing_decision import WritingDecider
 from Services.offer_enricher import OfferEnricher
+from Services.render_resume import ResumeRenderer
 from Services.resume_writer import ResumeWriter
 from Services.letter_writer import LetterWriter
 from Helpers.OfferRepository import OfferRepository
@@ -51,6 +52,11 @@ def build_application(
         offer_repo=offer_repo
     )
 
+    resume_renderer = ResumeRenderer(
+        template_path=r"Medias\resume_template.html",
+        output_dir=r"Generated"
+    )
+
     resume_writer = ResumeWriter(
         llm=llm,
         settings=settings
@@ -68,6 +74,7 @@ def build_application(
         reranker=reranker,
         writing_decider=writing_decider,
         offer_enricher=offer_enricher,
+        resume_renderer=resume_renderer,
         resume_writer=resume_writer,
         letter_writer=letter_writer
     )
