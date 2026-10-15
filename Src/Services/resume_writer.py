@@ -21,10 +21,8 @@ class ResumeWriter:
     ) -> None:
         
         llm_data = job_offer.model_dump(
-            exclude={"rerank", "resume"}
+            exclude={"rerank", "resume", "retrieval", "plan", "cover_letter", "url"}
         )
-
-        # Ecriture du plan de rédaction par le llm
 
         job_offer.resume = self.llm.generate_structured_response(
             content=json.dumps(

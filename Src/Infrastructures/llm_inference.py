@@ -14,7 +14,7 @@ class LlmInference:
     def __init__(
         self,
         settings: Settings,
-        temperature: float = 0.7,
+        temperature: float = 1, #temp = 1 obligatoire pour gpt-6-luna
         top_p: float = 0.9,
     ) -> None:
         """
@@ -68,7 +68,7 @@ class LlmInference:
                 model=self.model,
                 messages=[{"role": "system", "content": system_prompt}, {"role":"user","content":content}],
                 temperature=self.temperature,
-                top_p=self.top_p,
+                #top_p=self.top_p, top_p pas supporté avec gpt-6-luna
                 response_format=response_format
             )
         except Exception:

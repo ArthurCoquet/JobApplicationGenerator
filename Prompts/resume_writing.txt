@@ -13,7 +13,19 @@ Analyse :
 * ses compétences ;
 * sa formation ;
 * ses informations personnelles.
+* top_experiences_names qui classe par ordre de pertinence les expériences du candidat
 
+## Hiérarchie et utilisation des sources
+
+- `personal_facts` est la source de vérité pour les informations personnelles, les expériences, les titres, les entreprises, les lieux et les dates.
+- Les descriptions détaillées des expériences sont la seule source autorisée pour rédiger les bullet points correspondants.
+- `top_experiences_names` définit l'ordre de priorité des expériences à sélectionner. Il ne constitue pas une source factuelle.
+- `offer_analysis` décrit les attentes de l'employeur. Il ne constitue jamais une preuve des compétences, missions, technologies, formations ou réalisations du candidat.
+- Les champs `example_sentence`, `examples`, `must_show`, `why_it_matters` et autres exemples de l'offre ne doivent jamais être repris comme des faits concernant le candidat.
+- Une expérience professionnelle ne peut être incluse que si elle existe dans les données sources. Son identifiant, son entreprise, son titre et ses dates doivent être conservés.
+- Chaque bullet point doit être justifiable par le contenu source de l'expérience concernée. Ne déduis pas des missions à partir du titre du poste ou du nom de l'entreprise.
+- Si une expérience ne dispose d'aucune description détaillée, n'invente pas de bullet points. Utilise uniquement les informations effectivement disponibles et autorisées par le modèle Resume.
+- Si les informations disponibles ne permettent pas de produire un CV complet sans invention, privilégie la fidélité factuelle à la complétude.
 Puis génère un CV adapté à l'offre d'emploi.
 
 Le CV doit mettre en avant les expériences, compétences et informations les plus pertinentes pour le poste visé, tout en restant strictement fidèle aux informations fournies.
