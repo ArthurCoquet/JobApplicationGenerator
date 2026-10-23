@@ -1,6 +1,6 @@
 from Infrastructures.llm_inference import LlmInference
 import logging
-from Schemas.rerank_format import MinimalistRerank
+from Schemas.rerank_format import Reranker
 from Schemas.job_offer import JobOffer
 from config.settings import Settings
 import json
@@ -32,7 +32,7 @@ class ExperienceReranker:
 
         job_offer.rerank = self.llm.generate_structured_response(
             content=retrieval_content, 
-            response_format=MinimalistRerank, 
+            response_format=Reranker, 
             system_prompt_path=self.system_prompt_path
         )
 
