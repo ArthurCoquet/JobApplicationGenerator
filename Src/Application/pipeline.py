@@ -34,19 +34,19 @@ async def pipeline(
     application.offer_enricher.add_exp_and_facts(job_offer=job_offer)
     checkpoint()
 
-    #application.resume_writer.write_resume(job_offer=job_offer)
-    #checkpoint()
-#
-    #await application.resume_renderer.render(job_offer=job_offer)
-#
-    #application.letter_writer.write_cover_letter_plan(job_offer=job_offer)
-    #checkpoint()
-#
-    #application.letter_writer.write_cover_letter(job_offer=job_offer)
-    #checkpoint()
-#
-    #application.letter_writer.save_cover_letter(
-    #    job_offer=job_offer,
-    #    output_dir="Generated"
-    #)
+    application.resume_writer.write_resume(job_offer=job_offer)
+    checkpoint()
+
+    await application.resume_renderer.render(job_offer=job_offer)
+
+    application.letter_writer.write_cover_letter_plan(job_offer=job_offer)
+    checkpoint()
+
+    application.letter_writer.write_cover_letter(job_offer=job_offer)
+    checkpoint()
+
+    application.letter_writer.save_cover_letter(
+        job_offer=job_offer,
+        output_dir="Generated"
+    )
 

@@ -11,7 +11,7 @@ Ta mission consiste à identifier et extraire les missions du poste (`needs`) et
 - Préserve le sens, le contexte et le niveau de précision des formulations originales.
 - Privilégie une extraction exhaustive et fidèle plutôt qu'une interprétation extensive.
 - Ne produis aucune recommandation de candidature, aucun argument de motivation et aucune évaluation du candidat.
-- Évite les doublons et les regroupements qui entraîneraient une perte d'information.
+- Ne crée qu'une entrée par exigence distincte, même si elle est mentionnée plusieurs fois dans l'offre. Préserve séparément les compétences réellement différentes.
 - Chaque `source_excerpt` doit reproduire exactement un passage du texte fourni, sans reformulation, et permettre de vérifier l'information extraite.
 
 En cas d'ambiguïté, privilégie l'interprétation la moins spéculative.
@@ -73,9 +73,11 @@ Ne fusionne pas des responsabilités indépendantes uniquement parce qu'elles re
 
 Inversement, ne découpe pas artificiellement une mission cohérente en plusieurs éléments lorsque ses activités sont étroitement liées et poursuivent un même objectif.
 
+Ne crée pas de mission supplémentaire à partir d'un objectif général du poste lorsque celui-ci est déjà couvert par les activités concrètes identifiées.
+
 # 3. Extraction des exigences techniques — `requirements`
 
-Identifie les technologies, langages, outils, frameworks, méthodes et compétences techniques explicitement mentionnés dans l'offre comme étant attendus, utilisés ou pertinents pour le poste.
+Identifie les compétences techniques, technologies, méthodes, qualifications, compétences linguistiques et aptitudes professionnelles explicitement attendues pour le poste.
 
 Pour chaque exigence, renseigne les champs suivants.
 
@@ -96,6 +98,8 @@ Utilise exclusivement deux catégories :
 
 Ne déduis pas qu'une compétence est obligatoire en raison de son importance habituelle pour le métier.
 
+Lorsqu'une offre cite plusieurs technologies comme exemples d'une même compétence, ne considère pas chacune comme individuellement obligatoire. Préserve la distinction entre l'exigence générale et les technologies citées à titre d'exemple.
+
 Une technologie utilisée dans la description des missions, mais non présentée explicitement comme une condition de recrutement, doit être classée `preferred`.
 
 ## `source_excerpt`
@@ -105,7 +109,7 @@ Sélectionne un extrait exact de l'offre permettant d'identifier l'exigence et d
 ## Règles spécifiques
 
 - Conserve la distinction entre technologies précises et compétences techniques générales.
-- N'extrais pas les qualités comportementales génériques comme exigences techniques.
+- Extrais les aptitudes professionnelles explicitement demandées, mais ignore les formulations promotionnelles et les qualités génériques non liées à une attente identifiable.
 
 # 4. Distinction entre missions et exigences
 
