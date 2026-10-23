@@ -16,9 +16,7 @@ def write_queries(job_offer: JobOffer) -> list[SearchQuery]:
             - la requête textuelle utilisée pour le retrieval
             - le besoin associé
             - sa description
-            - les signaux implicites
             - sa priorité
-            - son domaine d'impact
     """
 
     if job_offer.offer_analysis is None:
@@ -30,22 +28,13 @@ def write_queries(job_offer: JobOffer) -> list[SearchQuery]:
     
     for need in needs:
 
-        query_parts = [
-            need.name,
-            need.description,
-            *need.implicit_signals
-        ]
-
-        query = " ".join(query_parts)
+        query = f"{need.name}: {need.description}"
 
         queries.append({
             "query": query,
-            "name": need.name,
             "need": need.name,
             "description": need.description,
-            "implicit_signals": need.implicit_signals,
-            "priority": need.priority,
-            "area": need.impact_area
+            "priority": need.priority
         })
     
     return queries

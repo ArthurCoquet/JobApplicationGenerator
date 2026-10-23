@@ -14,7 +14,7 @@ from Schemas.experiences import Experiences, Experience
 settings = get_settings()
 vs_indexer = VectorStoreIndexer()
 
-with open(r"Docs\experiences_summary.json", "r", encoding="utf-8") as f:
+with open(r"Docs\experiences_chunks.json", "r", encoding="utf-8") as f:
     docs = json.load(f)
 
 result = Experiences(experiences=[Experience(**experience) for experience in docs["experiences"]])

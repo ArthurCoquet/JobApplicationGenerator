@@ -6,7 +6,7 @@ from Application.pipeline import pipeline
 from Schemas.job_offer import JobOffer
 
 URL="https://www.hellowork.com/fr-fr/emplois/84208598.html?utm_source=pushOffres&utm_medium=email&utm_campaign=pushOffres&utm_term=84208598&utm_content=liste1CTA"
-TITLE="Développeur Python - Open Prod"
+TITLE="---test Développeur Python - Open Prod"
 CONTENT="""
 Les missions du poste
 Le poste :
