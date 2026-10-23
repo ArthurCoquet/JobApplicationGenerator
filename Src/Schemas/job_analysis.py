@@ -11,11 +11,10 @@ class Need(BaseModel):
 
 class Requirement(BaseModel):
     name: str
-    importance: Literal["mandatory", "preferred", "optional"]
+    importance: Literal["mandatory", "preferred"]
     source_excerpt: str
 
 
 class JobAnalysisResponse(BaseModel):
-    job_title: str
     needs: list[Need]
     requirements: list[Requirement]
